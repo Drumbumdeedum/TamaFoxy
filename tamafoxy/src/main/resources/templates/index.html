@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Tamafoxy</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet"/>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+
+    <div class="top">
+        <h1>WELCOME TO PIMP MY FOX!</h1>
+    </div>
+
+    <div class="left">
+      <p class="menu">Foxy Menu</p>
+      <ul>
+        <li class="button" style="list-style: none"><a style="text-decoration: none" href="/index.html">Home</a></li>
+        <li class="button" style="list-style: none"><a style="text-decoration: none" href="/nutritioncenter.html">Nutrition Store</a></li>
+        <li class="button" style="list-style: none"><a style="text-decoration: none" href="/trickcenter.html">Trick Center</a></li>
+        <li class="button" style="list-style: none"><a style="text-decoration: none" href="/actionhistory.html">Action History</a></li>
+      </ul>
+    </div>
+
+    <div class="right">
+      <div class="image">
+        <img class="foxImage" th:src="${foxy.getImage()}" alt="There should be a fox here..."/>
+      </div>
+      <p th:text="'This is ' + ${foxy.getName()} + '.'"/>
+      <p th:text="'Currently living on ' + ${foxy.getFavouriteFood()} + ' and '+ ${foxy.getFavouriteDrink()} + '.'"/>
+      <p th:text="'He knows ' + ${foxy.getNumberOfTricks()} + ' trick(s).'"/>
+      <h3> Known tricks: </h3>
+      <form class="tricks" action="/setimage" th:each="trick : ${foxy.getFoxyTricks()}">
+        <input type="submit" class="submittrick" th:value="${trick.getTrickName()}"/>
+        <input type="hidden" name="image" th:value="${trick.getImageName()}"/>
+      </form>
+    </div>
+
+  </body>
+</html>
